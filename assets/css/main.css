@@ -34,11 +34,11 @@ pre {
 }
 
 .inner {
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: none;
 }
 
 .drescription {
-	padding-top: 2.3em;
+	padding-top: 0;
     font-family: 'Roboto Bold', sans-serif;
     font-size: 21px;
     font-weight: 700;
@@ -60,7 +60,7 @@ pre {
 }
 .contact {
 	background-color: #f8f8f8;
-	padding: 5em 0em;
+	padding: 3em 0em;
 }
 .contact h1 {
 	padding-bottom: 30px;
@@ -238,7 +238,7 @@ pre {
 }
 
 #main {
-    margin-top: 30px;
+    margin: 0;
 }
 
 .btn-tobais {
@@ -262,7 +262,7 @@ pre {
 /* Header */
 
 	.header {
-		padding: 4em 0 0 ;
+		padding: 4em 0 ;
 	}
 
 		.header .logo {
@@ -271,9 +271,9 @@ pre {
 			color: inherit;
 			font-weight: 900;
 			letter-spacing: 0.35em;
-			margin: 0 0 2.5em 0;
+			margin: 0 0 0 0;
 			text-decoration: none;
-			text-transform: uppercase;
+			text-transform: none;
 			display: inline-block;
 		}
 
@@ -291,7 +291,6 @@ pre {
 					width: 3.2em;
 					height: 2.5em;
 				}
-
 
 .unordarlist {
 	font-family: 'Roboto', sans-serif;
@@ -508,21 +507,21 @@ button[disabled], html input[disabled] {
 			left: 0;
 			width: 100%;
 			height: 100%;
-			padding: 2.75em;
+			padding: -;
 			opacity: 0;
 			overflow-y: auto;
 		}
 
 			#menu > .inner > ul {
 				list-style: none;
-				margin: 0 0 1em 0;
+				margin: 0 0 0 0;
 				padding: 0;
 			}
 			#menu > .inner > h2 {
 				list-style: none;
-				padding-bottom: 30px;
-				margin-top: 10px;
-				margin-bottom: 15px;
+				padding-bottom: 0px;
+				margin-top: 0px;
+				margin-bottom: 0px;
 			}
 
 				#menu > .inner > ul > li {
@@ -540,7 +539,7 @@ button[disabled], html input[disabled] {
 
 					#menu > .inner > ul > li:first-child {
 						border-top: 0;
-						margin-top: -1em;
+						margin-top: 0;
 					}
 
 		#menu > .close {
@@ -659,23 +658,6 @@ button[disabled], html input[disabled] {
 			opacity: 1;
 		}
 
-		.nav-bars {
-			position: absolute;
-			right: 15px;
-			width: auto;
-			height: auto;
-			top: 15px;
-			padding: 30px;
-		}
-
-		.nav-bars i {
-			color: #000;
-			font-size: 20px;
-			margin-right: 0px;
-		}
-
-
-
 
 /*---------------------------hover---------------------*/
 #open-popup {padding:20px}
@@ -780,10 +762,10 @@ button[disabled], html input[disabled] {
     margin-left: 15px;
 }
 .popup-parapraph {
-	padding: 0px 15px;
+	padding: 0px 5px;
 }
 .pop-up-icon {
-	padding: 20px 20px;
+	padding: 20px 5px;
 }
 .pop-up:hover {
     border-color: #c9c9c9;
