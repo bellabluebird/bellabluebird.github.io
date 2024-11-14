@@ -672,7 +672,13 @@ button[disabled], html input[disabled] {
 			opacity: 1;
 		}
 
-
+  .work-history p {
+    margin: 5px 0; /* Reduces vertical spacing between lines */
+    text-indent: 20px; /* Adds indentation */
+    font-size: 14px; /* Adjust font size for compactness */
+    line-height: 1.2; /* Sets a tighter line spacing */
+  }
+  
 /*---------------------------hover---------------------*/
 #open-popup {padding:20px}
 .white-popup {
