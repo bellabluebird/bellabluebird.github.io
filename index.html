@@ -1,6 +1,201 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
+  <script type="text/javascript">
+// <![CDATA[
+var border=300; // how wide is each border in pixels
+var effects=5; // how many of the effect are on the page
+var speed=70; // how fast is the animation (lower is faster)
+var colours=new Array("#9cf", "#c9f", "#fc9", "#f9c", "#cf9", "#9fc", "#6ff", "#f6f", "#ff6");
+// above line lists colours for the groovy effect (the list can be as long or short as you like)
+
+/****************************
+*1970s Groovy WebPage Effect*
+*(c)2008-13 mf2fm web-design*
+*  http://www.mf2fm.com/rv  *
+* DON'T EDIT BELOW THIS BOX *
+****************************/
+
+function addLoadEvent(funky) {
+  var oldonload=window.onload;
+  if (typeof(oldonload)!='function') window.onload=funky;
+  else window.onload=function() {
+    if (oldonload) oldonload();
+    funky();
+  }
+}
+
+addLoadEvent(yowzah);
+
+var swide, shigh, boddie;
+var h=new Array();
+var v=new Array();
+var op=1/(effects+1);
+function yowzah() { if (document.getElementById) {
+  var i, d, s;
+  boddie=document.createElement("div");
+  s=boddie.style;
+  s.position="fixed";
+  s.backgroundColor="transparent";
+  s.top="0px";
+  s.left="0px";
+  s.width="100%";
+  s.zIndex="-1";
+  set_width();
+  i=document.body.style.backgroundColor;
+  if (document.body.parentNode) {
+    if (i) document.body.parentNode.style.backgroundColor=i;
+    document.body.style.backgroundColor="transparent";
+  }
+  document.body.insertBefore(boddie, document.body.firstChild);
+  for (i=0; i<effects*10; i+=10) {
+    d=document.createElement("div");
+    s=d.style;
+    s.left="0px";
+	s.width="100%";
+    h[i]=Math.floor(Math.random()*(shigh-border)/3);
+    h[i+1]=shigh-Math.floor(Math.random()*(shigh-border)/3);
+    h[i+2]=(Math.random()<0.5?1:-1)*scat(0);
+    h[i+3]=(Math.random()<0.5?1:-1)*scat(h[i+2]);
+    s.position="absolute";
+    s.top=h[i]+"px";
+    s.height=(h[i+1]-h[1])+"px";
+    s.borderStyle="solid";
+    s.borderWidth=border+"px 0px";
+    jazzy(s, 'borderTopColor');
+	jazzy(s, 'borderBottomColor');
+    jazzy(s, 'backgroundColor');
+    s.opacity=op;
+    if (navigator.appName=="Microsoft Internet Explorer") s.filter="alpha(opacity="+(100*op)+")";
+    h[i+5]=s;
+    boddie.appendChild(d);
+  }
+  for (i=0; i<effects*10; i+=10) {
+    d=document.createElement("div");
+    s=d.style;
+	s.top="0px";
+    s.height="100%";
+    v[i]=Math.floor(Math.random()*(swide-border)/3);
+    v[i+1]=swide-Math.floor(Math.random()*(swide-border)/3);
+    v[i+2]=(Math.random()<0.5?1:-1)*scat(0);
+    v[i+3]=(Math.random()<0.5?1:-1)*scat(v[i+2]);
+    s.position="absolute";
+    s.left=v[i]+"px";
+    s.width=(v[i+1]-v[i])+"px";
+    s.borderStyle="solid";
+    s.borderWidth="0px "+border+"px";
+    jazzy(s, 'borderLeftColor');
+    jazzy(s, 'borderRightColor');
+    jazzy(s, 'backgroundColor');
+    if (navigator.appName=="Microsoft Internet Explorer") s.filter="alpha(opacity="+(100*op)+")";
+    else s.opacity=op;
+    v[i+5]=s;
+    boddie.appendChild(d);
+  }
+  setInterval('groovy()', speed);
+}}
+
+var old_jazz=false;
+function jazz() {
+	var new_jazz;
+	do { new_jazz=colours[Math.floor(Math.random()*colours.length)]; }
+	while ( new_jazz==old_jazz );
+	old_jazz=new_jazz;
+	return (new_jazz);
+}
+
+function jazzy(hip, jive) {
+	var new_jive;
+	do { new_jive=colours[Math.floor(Math.random()*colours.length)]; }
+	while (new_jive==hip[jive]);
+	hip[jive]=new_jive;
+}
+
+function scat(no) {
+	var yes;
+	no=Math.abs(no);
+	do { yes=2+Math.floor(Math.random()*3); }
+	while ( no==yes );
+	return (yes);
+}
+
+function groovy() {
+  var i;
+  for (i=0; i<effects*10; i+=10) {
+	h[i]+=h[i+2];
+	h[i+1]+=h[i+3];
+	if (h[i+1]-h[i]<5) {
+	  h[i+4]=h[i+2]; 
+	  h[i+2]=h[i+3];
+	  h[i+3]=h[i+4];
+	  jazzy(h[i+5], 'backgroundColor');
+	}
+    if (h[i]<-border) {
+		if (h[i+2]<0 && Math.random()<1/border) {
+			h[i+2]=scat(h[i+3]);
+			jazzy(h[i+5], 'borderTopColor');
+		}
+	}
+	if (h[i+1]>shigh) {
+		if (h[i+3]>0 && Math.random()<1/border) {
+			h[i+3]=-scat(h[i+2]);
+			jazzy(h[i+5], 'borderBottomColor');
+		}
+	}
+	h[i+5].top=h[i]+"px";
+    h[i+5].height=(h[i+1]-h[i])+"px";
+
+	v[i]+=v[i+2];
+	v[i+1]+=v[i+3];
+	if (v[i+1]-v[i]<5) {
+	  v[i+4]=v[i+2];
+	  v[i+2]=v[i+3];
+	  v[i+3]=v[i+4];
+	  jazzy(v[i+5], 'backgroundColor');
+	}
+	if (v[i]<-border) {
+		if (v[i+2]<0 && Math.random()<1/border) {
+			v[i+2]=scat(v[i+3]);
+			jazzy(v[i+5], 'borderLeftColor');
+		}
+	}
+	if (v[i+1]>swide) {
+		if (v[i+3]>0 && Math.random()<1/border) {
+			v[i+3]=-scat(v[i+2]);
+			jazzy(v[i+5], 'borderRightColor');
+		}
+	}
+	v[i+5].left=v[i]+"px";
+    v[i+5].width=(v[i+1]-v[i])+"px";
+  }
+}
+
+window.onresize=set_width;
+function set_width() {
+  var sw_min=999999;
+  var sh_min=999999;
+  if (document.documentElement && document.documentElement.clientWidth) {
+    if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+    if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+  }
+  if (typeof(self.innerWidth)!="undefined" && self.innerWidth) {
+    if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+    if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+  }
+  if (document.body.clientWidth) {
+    if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+    if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+  }
+  if (sw_min==999999 || sh_min==999999) {
+    sw_min=800;
+    sh_min=600;
+  }
+  swide=sw_min;
+  shigh=sh_min;
+  boddie.style.height=shigh+"px";
+} 
+// ]]>
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bella's website!</title>
@@ -16,7 +211,7 @@
     <link href="https://fonts.googleapis.com/css?family=Istok+Web" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 </head>
-
+<div class="page-content">
 	<body style="background-color: #f2f4f4;">
 <section class="head" id="header">
         <div class="wrapper">
@@ -59,7 +254,7 @@
 									<div class="img-hover glass">
 										<div class="c-table">
 											<div class="ct-cell">
-												<h3 class="img-title">Dry Lab: PCA + K-Means Clustering</h3>
+												<h3 class="img-title">Differential Expression Analysis of Gene Expression</h3>
 											</div>
 										</div>
 									</div>
@@ -77,7 +272,7 @@
 													<h2 class="popup-head">Differential Expression Analysis</h2>
 												</div>
 												<div>
-													<p class="popup-parapraph">This visualization illustrates the clustering of gene expression patterns across different timepoints, enabling us to identify genes with coordinated expression profiles over time. Through this analysis, we pinpointed targets that exhibit dynamic expression changes at key timepoints, guiding our selection of candidates for further screening. Additionally, the clustering approach facilitated the identification of potentially relevant pathways, providing insight into the underlying biological processes. This work was conducted as part of research for the Rubin Lab at Harvard University.</p>
+													<p class="popup-parapraph">This work was conducted as part of my research for the Rubin Lab at Harvard University. <a href="https://github.com/bellabluebird/legend_screen/blob/main/legend_factoextra_bella_v4.R" target="_blank">See a sample of my code here.</a> <br /> <br /> I employed principal component analysis (PCA) and K-means clustering algorithms to analyze gene expression across different timepoints of skeletal muscle organoid culture. The clustering analysis allowed us to identify cell surface markers associated with distinct cell populations, particularly satellite cells. These markers were expressed in patterns consistent with Pax7, a well-established marker for satellite cells, thereby enabling us to use fluorescence-activated cell sorting (FACS) to enrich this population for transplantation applications. </p>
 												</div>
 												<div class="pop-up-icon">
 													<div class="row">
@@ -94,11 +289,11 @@
 						<div class="col-md-6">
 							<div class="a">
 								<a href="#test-popup-2" class="open-popup-link">
-									<img src="images/2.jpg" class="img-responsive" alt="Responsive image">
+									<img src="images/python_ex.png" class="img-responsive" alt="Responsive image">
 									<div class="img-hover shoes-glass">
 										<div class="c-table">
 											<div class="ct-cell">
-												<h3 class="img-title">Wet Lab: </h3>
+												<h3 class="img-title">Graduate Coursework</h3>
 											</div>
 										</div>
 									</div>
@@ -109,29 +304,17 @@
 									<div class="row">
 										<div class="pop-up-color">
 											<div class="col-md-8 p-l-0 p-r-0">
-												<img src="images/2.jpg" class="img-responsive" alt="Responsive image">
+												<img src="images/python_ex.png" class="img-responsive" alt="Responsive image">
 											</div>
 											<div class="col-md-4">
 												<div>
-													<h2 class="popup-head">SHOES & GLASS</h2>
+													<h2 class="popup-head">Coding in R, Python, and Unix/Linux</h2>
 												</div>
 												<div>
-													<p class="popup-parapraph">Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit a amet nisi is a euismod sed cursus arcu elementum and ipsum arcu vivamus is quis venenatis orci and nullam dolore. Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod still amet nisi aliqua.Eas Lorem ipsum dolor sit amet.</p>
+													<p class="popup-parapraph">See some examples of my work from my graduate classes.<br /> <br />  <a href="https://github.com/bellabluebird/legend_screen/blob/main/legend_factoextra_bella_v4.R" target="_blank"> CDS BF 591-R:</a>  An Overview of R for Data Science <br />  <br />  <a href="https://github.com/bellabluebird/legend_screen/blob/main/legend_factoextra_bella_v4.R" target="_blank">CDS BF 550: </a>  Programming, Data Analytics, and Machine Learning in Python <br /> <br />  <a href="https://github.com/bellabluebird/legend_screen/blob/main/legend_factoextra_bella_v4.R" target="_blank">CDS BF 527:</a>  Applications in Bioinformatics <br /> <br /> </p>
 												</div>
 												<div class="pop-up-icon">
 													<div class="row">
-														<ul class="text-center popup-social-contact">
-															<li class="popup-social-icons">
-															<a href="#" class="icon pop-up fa-facebook"><span class="label">Facebook</span></a>
-															</li>
-															<li class="popup-social-icons">
-																<a href="#" class="icon pop-up fa-twitter"><span class="label">Twitter</span></a>
-															</li>
-															<li class="popup-social-icons">
-																<a href="#" class="icon pop-up fa-google-plus"><span class="label">GooglePlus</span></a>
-															</li>
-															<li class="popup-social-icons">
-																<a href="#" class="icon pop-up fa-pinterest"><span class="label">pinterest</span></a>
 															</li>
 														</ul>
 													</div>
@@ -298,40 +481,6 @@
 							</div>
 						</div>
 					</div><br>
-					
-					
-		<section class="contact">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8">
-						<h1>send a message!</h1>
-							<form>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<input type="text" class="form-control gt" name="name" id="name" placeholder="Name"/>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<input type="email" class="form-control gt" name="email" id="email" placeholder="Email" />
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="from-group">
-											<textarea class="form-control gt" rows="2" name="message" id="message" placeholder="Message..."></textarea>
-										</div>
-									</div>
-								</div>
-							</form>
-							<div class="form-group"  align="right">
-							    <div class="col-sm-offset-2 col-sm-10">
-							      <a href="#" type="submit" class="btn btn-tobais btn-send-2">SEND</a>
-							    </div>
-							</div>
-						</div>
 					<div class="col-md-4">
 						<h1>contact info</h1>
 							<p class="contact-desc">
@@ -346,6 +495,7 @@
 		</section>
 
 		<section class="footer">		
+		<body style="background-color: #f2f4f4;">
 			<footer>
 				<div class="container">
 					<div class="row">
@@ -355,6 +505,7 @@
 						<div class="col-sm-4 col-xs-3" align="right">
 							<a href="#" id="back-to-top" class="top text-right" >TOP <i class="fa fa-angle-up" aria-hidden="true"></i> </a>
 						</div>
+					</div>
 					</div>
 				</div>											
 			</footer>

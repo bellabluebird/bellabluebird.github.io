@@ -6,6 +6,21 @@ body {
 	font-size: 16px;
 }
 
+.page-content {
+    background-color: white;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    max-width: 1300px;
+    width: 100%;                 /* Ensures box uses available width */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;          /* Allows for floating effect */
+    z-index: 10;                 /* Ensure it's on top of other elements */
+}
+
 a:hover {
 	text-decoration: none;
 }
@@ -662,10 +677,15 @@ button[disabled], html input[disabled] {
 /*---------------------------hover---------------------*/
 #open-popup {padding:20px}
 .white-popup {
-  position: relative;
-  background: #FFF;
-  width: auto;
-  max-width: 1150px;
+width: 80%; /* Adjust width as desired */
+    height: 80vh; /* Adjust height as desired */
+    max-width: 800px; /* Set a max-width to ensure consistency */
+    max-height: 600px; /* Set a max-height if necessary */
+    overflow-y: auto; /* Add scroll if content exceeds height */
+    padding: 20px;
+    background-color: #fff; /* Background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    border-radius: 8px; /* Optional rounded corners */
 }
 
 .a a img.img-responsive {
