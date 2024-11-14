@@ -11,7 +11,7 @@ body {
     padding-top: 50px;
     padding-right: 30px;
     padding-bottom: 10px;
-    padding-left: 80px;
+    padding-left: 10px;
     border: 2px solid #ddd;
     border-radius: 10px;
     max-width: 1300px;
@@ -855,7 +855,7 @@ li.popup-socials-icons {
 }
 
 li.social-icons {
-    padding-left: 15px;
+    padding-left: 0px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -920,5 +920,5 @@ textarea#message {
 }
 .mfp-content .white-popup .col-md-4 {
 	padding-right: 25px;
-	padding-left: 25px;
+	padding-left: 10px;
 }
