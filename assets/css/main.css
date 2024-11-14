@@ -15,7 +15,7 @@ body {
     border: 2px solid #ddd;
     border-radius: 10px;
     max-width: 1300px;
-    width: 100%;                 /* Ensures box uses available width */
+    width: 95%;                 /* Ensures box uses available width */
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
     position: relative;          /* Allows for floating effect */
     z-index: 10;                 /* Ensure it's on top of other elements */
@@ -74,14 +74,13 @@ pre {
     margin-right: 7px;
 }
 .contact {
-	background-color: #f8f8f8;
-	padding: 3em 0em;
+	padding: 0em 3em;
 }
 .contact h1 {
 	padding-bottom: 30px;
     font-size: 25px;
     letter-spacing: 5px;
-    margin-top: 0px;
+    margin-top: 10px;
 }
 
 .contact p {
@@ -158,7 +157,7 @@ pre {
 			padding: 30px 0px 0px 30px;
 		}
 		.footer {
-			padding: 30px 0px;
+			padding: 10px 30px;
 		}
 
 		.icon.style2 {
@@ -773,7 +772,6 @@ width: 80%; /* Adjust width as desired */
   background-color: #FFF;
   padding: 0px;
   width: auto;
-  max-width: 1150px;
   margin: 0px auto;
 }
 .popup-head {
