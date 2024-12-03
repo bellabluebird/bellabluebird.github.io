@@ -20,6 +20,7 @@ body {
 }
 
 .page-content {
+    background-color:white;
     margin: 0 auto;
     padding: 30px 15px 10px 15px;  /* Standardized padding */
     border: 2px solid #ddd;
